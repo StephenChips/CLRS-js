@@ -6,7 +6,7 @@ If you find it useful to yourself, please star this repository, and it will be
 very thankful if you would like to contribute. It is welcome to:
 
 1. Point out mistakes and bugs.
-2. Write more tests for existing solution
+2. Write more tests for existing solutions
 3. Add new solutions
 4. Add more detail explaination about the solution
 
