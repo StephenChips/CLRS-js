@@ -10,49 +10,54 @@
  * simply accomplish it with a stack.
  * 
  * @param {{ weight: number, price: number }[]} goods list of goods that can be chosen
- * @param {number} knapsackSize the maximum weight limit of the knapsack 
+ * @param {number} knapsackCapacity the maximum weight limit of the knapsack 
  * @returns 
  */
-export function zeroOneKnapsack(goods, knapsackSize) {
-    const dp = new Array(knapsackSize + 1);
-    const choices = new Array(knapsackSize + 1);
+export function zeroOneKnapsack(goods, knapsackCapacity) {
+    const dp = new Array(knapsackCapacity + 1);
+    const choices = new Array(knapsackCapacity + 1);
     const hasChosenGoods = new Array(goods.length).fill(false);
 
     dp[0] = 0;
 
-    topDownDP(knapsackSize);
+    topDownDP(knapsackCapacity);
+    
+    return getSolution();
 
-    console.log(dp);
-    console.log(choices);
+    function topDownDP(knapsackCapacity) {
+        if (knapsackCapacity < 0) return 0;
+        if (dp[knapsackCapacity] !== undefined) dp[knapsackCapacity];
 
-    const loots = [];
-    for (let i = knapsackSize; i > 0; i -= choices[i].weight) {
-        loots.push(choices[i]);
-    }
-
-    return loots;
-
-    function topDownDP(knapsackSize) {
-        if (knapsackSize < 0) return 0;
-        if (dp[knapsackSize] !== undefined) dp[knapsackSize];
-
-        dp[knapsackSize] = 0;
+        dp[knapsackCapacity] = 0;
 
         for (let i = 0; i < goods.length; i++) {
             if (hasChosenGoods[i]) continue;
-            if (knapsackSize < goods[i].weight) continue;
+            if (knapsackCapacity < goods[i].weight) continue;
 
             hasChosenGoods[i] = true;
 
-            const lootValue = topDownDP(knapsackSize - goods[i].weight);
-            if (lootValue + goods[i].weight > dp[knapsackSize]) {
-                dp[knapsackSize] = lootValue + goods[i].weight;
-                choices[knapsackSize] = goods[i];
+            const lootValue = topDownDP(knapsackCapacity - goods[i].weight);
+            if (lootValue + goods[i].price > dp[knapsackCapacity]) {
+                dp[knapsackCapacity] = lootValue + goods[i].price;
+                choices[knapsackCapacity] = goods[i];
             }
 
             hasChosenGoods[i] = false;
         }
 
-        return dp[knapsackSize];
+        return dp[knapsackCapacity];
+    }
+
+    function getSolution() {
+        const loots = [];
+
+        let i = knapsackCapacity;
+
+        while (i > 0 && choices[i] !== undefined) {
+            loots.push(choices[i]);
+            i -=  choices[i].weight;
+        }
+
+        return loots;
     }
 };
