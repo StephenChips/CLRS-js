@@ -1,9 +1,8 @@
 # CLRS-js
 
-This repository contains JavaScript solutions to CLRS, a.k.a, Introduction to Algorithms. 
+This repository contains JavaScript solutions to *CLRS (3rd Edition)*, a.k.a, *Introduction to Algorithms (3rd Edition) by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein*.
 
-It will be very grateful if you can star this repository, and it will be more grateful if you'd like
-to contribute. You are welcome to:
+Currently this project is still far from completed (and probably will take very very long time). It will be very grateful if you can star this repository, and it will be more grateful if you'd like to contribute. You are welcome to:
 
 1. Point out mistakes and bugs
 2. Add new tests
