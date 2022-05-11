@@ -84,6 +84,7 @@ export function computeEditDistance(s, t, costs = COST) {
         }
 
         replace = costs.REPLACE + getDistance(s, t, i + 1, j + 1);
+        
         del = costs.DELETE + getDistance(s, t, i + 1, j);
         insert = costs.INSERT + getDistance(s, t, i, j + 1);
 
